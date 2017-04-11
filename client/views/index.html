@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Agility Hello World</title>
+  <script src="../../library/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../library/agility.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var message = $$({txt:'Hello World'}, '<div data-bind="txt"/>');
+    $$.document.append(message);        
+  </script>
+
+</body>
+</html>
