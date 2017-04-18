@@ -8,6 +8,8 @@ var message = $$({
 
 $$.document.append(message);
 
+
+// model-view binding
 var message2 = $$({txt: 'It is data from model'},
 	'<div data-bind="txt"></div>');
 $$.document.append(message2);
@@ -23,4 +25,58 @@ var checkbox = $$(
 	$('#my-checkbox').html()
 );
 $$.document.append(checkbox);
+
+
+// controller-event bindings
+var person = $$({},
+	'<p><input type="text" data-bind="name"/><span id="msg"/></p>',
+	{
+		'create': function() {
+			this.view.$('#msg').text('Enter name');
+		},
+		'change': function() {
+			this.view.$('#msg').text('Name changed to: ' + this.model.get('name'));
+		},
+		'focus input': function() {
+			this.view.$('#msg').text('Focused on input!');
+		}
+	}
+);
+
+$$.document.append(person);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
