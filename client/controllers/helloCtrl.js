@@ -46,8 +46,24 @@ var person = $$({},
 $$.document.append(person);
 
 
+// inheritance and containers
+var proto = $$({}, '<p data-bind="name" style="color: red" />');
+$$.document.append(proto);
+var obj1 = $$(proto, {name: 'Joe Doe'});
+var obj2 = $$(proto, {name: 'Foo Bar'});
+$$.document.append(obj1);
+$$.document.append(obj2);
 
-
+var counter = 0;
+var item = $$({}, '<p>I\'m item #<span data-bind="id"></span></p>');
+var list = $$({}, '<div><button>Click me to add item</button><ul></ul></div>', {
+	'click button': function() {
+		var newItem = $$(item, {id: counter});
+		this.prepend(newItem, 'ul');
+		++counter;
+	}
+});
+$$.document.append(list);
 
 
 
