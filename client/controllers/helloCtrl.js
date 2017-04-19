@@ -66,12 +66,54 @@ var list = $$({}, '<div><button>Click me to add item</button><ul></ul></div>', {
 $$.document.append(list);
 
 
+// In-object content, style, and behavior
+var clock = $$({
+	model:{},
+	view: {
+		format:'<p data-bind="time"></p>',
+		style: 'p {color: green}'
+	},
+	controller:{
+		'create': function() {
+			var self = this;
+			setInterval(function() {
+				self.model.set({time: (new Date()).toLocaleTimeString()});
+			}, 1000);
+		}
+	}
+});
+$$.document.append(clock);
+
+console.log($$.document);
+console.log(clock);
+console.log(clock.prototype === $$.document.prototype); // true
+console.log(clock.constructor === $$.document.constructor); // true
+console.log(clock instanceof $$); // false
 
 
+var someone = $$(
+	{},
+	'<button>Alert Someone</button>',
+	{
+		'click &': function() {
+			window.alert('I\'m Bowen');
+		}
+	}
+);
 
+$$.document.append(someone);
 
-
-
+var someoneTwo = $$(
+	someone,
+	{},
+	{},
+	{
+		'~click &': function() {
+			window.alert('I\'m person two');
+		}
+	}
+);
+$$.document.append(someoneTwo);
 
 
 
